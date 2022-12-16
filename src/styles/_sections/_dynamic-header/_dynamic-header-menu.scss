@@ -1,3 +1,10 @@
+.dynamic-header__menu {
+    @include breakpoint (large){
+        display: flex !important;
+        align-items: center;
+    }
+}
+
 .dynamic-header__menu-list {
     display: flex;
 }

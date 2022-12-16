@@ -10,7 +10,7 @@
     "yarn": ">=1.0.0"
   },
   "scripts": {
-    "build": "themeplify build",
+    "build": "npx tailwindcss build src/tailwindcss/application.css -o src/assets/application.css.liquid && theme deploy && themeplify build --allow-live",
     "deploy": "themeplify deploy",
     "start": "cross-env NODE_ENV=development themeplify start",
     "watch": "cross-env NODE_ENV=development themeplify watch",
@@ -32,10 +32,15 @@
     "@shopify/theme-product": "^4.1.0",
     "@shopify/theme-product-form": "^4.1.0",
     "@shopify/theme-sections": "^4.0.2",
+    "@tailwindcss/forms": "^0.5.3",
+    "@tailwindcss/typography": "^0.5.8",
+    "autoprefixer": "^10.4.13",
     "body-scroll-lock": "^3.1.5",
     "es6-promise": "^4.2.8",
     "form-serialize": "^0.7.2",
-    "swiper": "^6.7.5"
+    "postcss": "^8.4.20",
+    "swiper": "^6.7.5",
+    "tailwindcss": "^3.2.4"
   },
   "devDependencies": {
     "@the-utd/themeplify": "^1.0.26",
