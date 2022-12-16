@@ -1,0 +1,50 @@
+{
+  "name": "themeplify-theme",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "private": true,
+  "engines": {
+    "node": ">=12.8.3",
+    "npm": "use yarn!",
+    "yarn": ">=1.0.0"
+  },
+  "scripts": {
+    "build": "themeplify build",
+    "deploy": "themeplify deploy",
+    "start": "cross-env NODE_ENV=development themeplify start",
+    "watch": "cross-env NODE_ENV=development themeplify watch",
+    "download": "themeplify download",
+    "zip": "themeplify zip",
+    "server": "themeplify server",
+    "postinstall": "husky install && yarn copy .husky/**/* .git/hooks"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@savchukoleksii/shopify-template-checker": "^1.0.1",
+    "@savchukoleksii/shopify-theme-settings-tool": "^0.0.1",
+    "@savchukoleksii/shopify-theme-translations-tool": "^0.0.4",
+    "@shopify/theme-a11y": "^4.1.1",
+    "@shopify/theme-cart": "^4.1.1",
+    "@shopify/theme-currency": "^4.1.1",
+    "@shopify/theme-images": "^4.1.1",
+    "@shopify/theme-product": "^4.1.0",
+    "@shopify/theme-product-form": "^4.1.0",
+    "@shopify/theme-sections": "^4.0.2",
+    "axios": "^0.21.0",
+    "body-scroll-lock": "^3.1.5",
+    "es6-promise": "^4.2.8",
+    "form-serialize": "^0.7.2",
+    "js-cookie": "^2.2.1",
+    "swiper": "^6.7.5"
+  },
+  "devDependencies": {
+    "@the-utd/themeplify": "^1.0.26",
+    "babel-loader": "^8.2.2",
+    "copy": "^0.3.2",
+    "cross-env": "^7.0.3",
+    "husky": "^5.0.1",
+    "webpack": "4.0.0"
+  }
+}
