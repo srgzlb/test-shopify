@@ -12,3 +12,29 @@ body {
     padding: 0 20px;
     max-width: 1400px;
 }
+
+ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+
+    & + ul {
+        padding-top: 10px;
+    }
+}
+
+a {
+    display: inline-block;
+    vertical-align: top;
+    color: currentColor;
+    text-decoration: none;
+    &:hover {
+        opacity: 0.8;
+    }
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 0;
+}

@@ -67,6 +67,23 @@
     cursor: pointer;
 }
 
+.dynamic-header__menu-mobile-dropdown-item,
+.dynamic-header__menu-mobile-topheader-item,
+.dynamic-header__menu-mobile-item {
+    padding: 0 0 10px;
+    &:last-child {
+        padding: 0;
+    }
+}
+
+.dynamic-header__menu-mobile-parent-link {
+    padding-left: 10px;
+}
+
+.dynamic-header__menu-mobile-dropdown-list {
+    padding: 30px 0 0;
+}
+
 .dynamic-header__menu-mobile-back-btn {
     height: 30px;
     width: 30px;
