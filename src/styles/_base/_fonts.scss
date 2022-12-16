@@ -1,0 +1,67 @@
+//
+//  Font imports
+//  _____________________________________________
+
+@font-face {
+    font-family: 'GT Super Text';
+    src: url('GT-Super-Display-Light.woff2') format('woff2'), url('GT-Super-Display-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+    display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Super Text';
+    src: url('GT-Super-Display-Light-Italic.woff2') format('woff2'), url('GT-Super-Display-Light-Italic.woff') format('woff');
+    font-weight: 300;
+    font-style: italic;
+    display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Super Text';
+    src: url('GT-Super-Display-Medium.woff2') format('woff2'), url('GT-Super-Display-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Super Text';
+    src: url('GT-Super-Display-Medium-Italic.woff2') format('woff2'), url('GT-Super-Display-Medium-Italic.woff') format('woff');
+    font-weight: 500;
+    font-style: italic;
+    display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Super Text';
+    src: url('GT-Super-Text-Book.woff2') format('woff2'), url('GT-Super-Text-Book.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    display: swap;
+  }
+
+  @font-face {
+    font-family: 'GT Super Text';
+    src: url('GT-Super-Text-Book-Italic.woff2') format('woff2'), url('GT-Super-Text-Book-Italic.woff') format('woff');
+    font-weight: 400;
+    font-style: italic;
+    display: swap;
+  }
+
+  @font-face {
+    font-family: 'Platform';
+    src: url('Platform-Medium-Web.woff2') format('woff2'), url('Platform-Medium-Web.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+    display: swap;
+  }
+
+  @font-face {
+    font-family: 'Platform';
+    src: url('Platform-Regular-Web.woff2') format('woff2'), url('Platform-Regular-Web.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+    display: swap;
+  }

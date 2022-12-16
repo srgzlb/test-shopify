@@ -1,0 +1,401 @@
+{%- assign hide_bar 		= section.settings.hide_bar -%}
+{%- assign top_menu_left 	= section.settings.top_menu_left -%}
+{%- assign top_menu_right 	= section.settings.top_menu_right -%}
+{%- assign main_menu 		= section.settings.main_menu -%}
+{%- assign main_menu_mobile = section.settings.main_menu_mobile -%}
+
+{%- capture header_logo -%}
+	{%- assign logo_svg 	= section.settings.logo_svg -%}
+	{%- assign logo_img 	= section.settings.logo -%}
+	{%- assign paragraph 	= section.settings.paragraph -%}
+
+	<a class="dynamic-header__logo" href="{{ routes.root_url }}">
+		{%- if logo_svg != blank -%}
+			{{- logo_svg -}}
+		{%- elsif logo_img != blank -%}
+			<img
+				srcset="{%- if logo_img.width >= 320 -%}{{ logo_img | img_url: '320x' }} 320w,{%- endif -%}
+						{%- if logo_img.width >= 425 -%}{{ logo_img | img_url: '425' }} 425w,{%- endif -%}
+						{%- if logo_img.width >= 535 -%}{{ logo_img | img_url: '535x' }} 535w,{%- endif -%}
+						{%- if logo_img.width >= 750 -%}{{ logo_img | img_url: '750x' }} 750w,{%- endif -%}
+						{%- if logo_img.width >= 810 -%}{{ logo_img | img_url: '810x' }} 810w,{%- endif -%}
+						{%- if logo_img.width >= 1024 -%}{{ logo_img | img_url: '1024x' }} 1024w,{%- endif -%}
+						{%- if logo_img.width >= 1200 -%}{{ logo_img | img_url: '1200x' }} 1200w,{%- endif -%}
+						{%- if logo_img.width >= 1440 -%}{{ logo_img | img_url: '1440x' }} 1440w,{%- endif -%}
+						{{ logo_img | img_url: 'master' }} {{ logo_img.width }}w"
+				src="{{ logo_img | img_url: '1440x' }}"
+				alt="{{ logo_img.alt | escape }}"
+				loading="lazy"
+				width="{{ logo_img.width }}"
+				height="{{ logo_img.height }}"
+			>
+        {%- else -%}
+            {{ 'general.logo.logo_text' | t }}
+		{%- endif -%}
+	</a>
+	<div class="dynamic-header__description">
+		{{- paragraph -}}
+	</div>
+{%- endcapture -%}
+
+{%- capture header_search -%}
+	<div class="dynamic-header__search" data-search-container>
+		<a href="#" class="dynamic-header__search-close" data-search-opener>
+			{%- render 'icon-search' -%}
+		</a>
+		<form action="{{ routes.search_url }}" method="get" class="dynamic-header__search-container hidden">
+			<div class="dynamic-header__search-input-wrapper">
+				<input type="search" name="q" value="" class="dynamic-header__search-input" placeholder="{{- 'sections.header.search.placeholder' | t -}}">
+			</div>
+			<a href="#" class="dynamic-header__search-close" data-search-close>
+				{%- render 'icon-close' -%}
+			</a>
+		</form>
+	</div>
+{%- endcapture -%}
+
+{%- capture customer_account %}
+    {%- if shop.customer_accounts_enabled -%}
+        <a href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
+			class="dynamic-header__icon dynamic-header__icon--account"
+		>
+          {% render 'icon-account' %}
+          <span class="visually-hidden">
+            {%- liquid
+              if customer
+                echo 'customer.account_fallback' | t
+              else
+                echo 'customer.log_in' | t
+              endif
+            -%}
+          </span>
+        </a>
+      {%- endif -%}
+{%- endcapture -%}
+
+{%- capture icon_cart -%}
+	<a href="{{ routes.cart_url }}" class="dynamic-header__bar-item dynamic-header__bar-item--cart" id="cart-icon-bubble">
+		{%- render 'icon-cart' -%}
+		<span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
+
+		<span class="cart-count-bubble {% if cart.item_count < 1 %}hidden{% endif %}">
+			{%- if cart.item_count < 100 -%}
+				<span aria-hidden="true">{{ cart.item_count }}</span>
+			{%- endif -%}
+			<span class="visually-hidden">{{ 'sections.header.cart_count' | t: count: cart.item_count }}</span>
+		</span>
+	</a>
+{%- endcapture -%}
+
+{%- capture icon_hamburger -%}
+	<button class="dynamic-header__menu-mobile-opener" data-open-mobmenu>
+		{%- render 'icon-hamburger' -%}
+	</button>
+{%- endcapture -%}
+
+
+<section class="dynamic-header" data-section-id="{{- section.id -}}" data-section-type="dynamic-header">
+	{% if hide_bar == false %}
+		<div class="dynamic-header__top" data-header-topbar>
+			<div class="dynamic-header__top-menu">
+				<div class="dynamic-header__container container">
+					<ul class="dynamic-header__top-menu-list">
+						{%- for link in top_menu_left.links -%}
+							{%- if link != blank -%}
+								<li class="dynamic-header__top-menu-item">
+									<a class="dynamic-header__top-menu-link" href="{{ link.url }}">{{  link.title }}</a>
+								</li>
+							{%- endif -%}
+						{%- endfor -%}
+					</ul>
+					<ul class="dynamic-header__top-menu-list">
+						{%- for link in top_menu_right.links -%}
+							{%- if link != blank -%}
+								<li class="dynamic-header__top-menu-item">
+									<a class="dynamic-header__top-menu-link" href="{{ link.url }}">{{  link.title }}</a>
+								</li>
+							{%- endif -%}
+						{%- endfor -%}
+					</ul>
+				</div>
+			</div>
+		</div>
+	{% endif %}
+
+	<div class="dynamic-header__container container">
+
+		<header class="dynamic-header__middle" data-header-content>
+			<div class="dynamic-header__middle-container">
+				<div class="dynamic-header__column dynamic-header__column--left">
+					{{- header_logo -}}
+				</div>
+
+				<div class="dynamic-header__column">
+					<div class="dynamic-header__menu hidden" data-menu-container>
+						<ul class="dynamic-header__menu-list">
+							{%- for link in main_menu.links -%}
+								{%- if link != blank  -%}
+									{%- assign linkName = link.title | downcase -%}
+
+									<li class="dynamic-header__menu-main-item" data-menu-item>
+										<a class="dynamic-header__menu-link" href="{{ link.url}}">{{- link.title -}}</a>
+
+										{%- if link.links.size > 0 -%}
+											<div class="dynamic-header__menu-dropdown hidden" data-menu-dropdown>
+
+												<div class="dynamic-header__menu-dropdown-columns">
+													<div class="dynamic-header__menu-dropdown-col">
+														<ul class="dynamic-header__menu-dropdown-list">
+
+															{%- for child_link in link.links -%}
+																<li class="dynamic-header__menu-dropdown-item" data-dropdown-item>
+																	<a class="dynamic-header__menu-dropdown-link" href="{{ child_link.url }}">{{- child_link.title -}}</a>
+
+																	{%- if child_link.links.size > 0 -%}
+																		<ul class="dynamic-header__menu-dropdown-grandchild">
+																			{%- for grandchild_link in child_link.links -%}
+																				<li class="dynamic-header__menu-dropdown-grandchild-item">
+																					<a class="dynamic-header__menu-dropdown-grandchild-link" href="{{ grandchild_link.url }}">{{- grandchild_link.title -}}</a>
+																				</li>
+																			{%- endfor -%}
+																		</ul>
+																	{%- endif -%}
+																</li>
+															{%- endfor -%}
+														</ul>
+													</div>
+												</div>
+											</div>
+										{%- endif -%}
+									</li>
+								{%- endif -%}
+							{%- endfor -%}
+						</ul>
+					</div>
+					<div class="dynamic-header__icons">
+						{{- customer_account -}}
+						{{- header_search -}}
+						{{- icon_cart -}}
+						{{- icon_hamburger -}}
+					</div>
+				</div>
+			</div>
+
+
+		</header>
+
+		<div class="dynamic-header__menu-mobile container" data-mobmenu-container>
+			<div class="dynamic-header__menu-mobile-header">
+				<div class="dynamic-header__menu-mobile-close" data-menu-close>
+					{%- render 'icon-close' -%}
+				</div>
+			</div>
+
+			<div class="dynamic-header__menu-mobile-content">
+				<ul class="dynamic-header__menu-mobile-nav">
+					{%- for link in main_menu_mobile.links -%}
+						{%- if link != blank -%}
+							<li class="dynamic-header__menu-mobile-item" data-mob-parent-link>
+								{%- if link.links.size > 0 -%}
+									<span class="dynamic-header__menu-mobile-link">
+										{{- link.title -}}
+										{%- render 'icon-arrow' -%}
+									</span>
+									<div class="dynamic-header__menu-mobile-container container" data-mobmenu-dropdown>
+										<div class="dynamic-header__menu-mobile-childlink-header">
+											<button class="dynamic-header__menu-mobile-back-btn" data-mobdropdown-close>
+												{%- render 'icon-arrow' -%}
+											</button>
+											<a class="dynamic-header__menu-mobile-parent-link" href="{{ link.url }}">{{- link.title -}}</a>
+										</div>
+
+										<ul class="dynamic-header__menu-mobile-dropdown-list">
+											{%- for child_link in link.links -%}
+												<li class="dynamic-header__menu-mobile-dropdown-item">
+													<a class="dynamic-header__menu-mobile-dropdown-link" href="{{ child_link.url }}">{{- child_link.title -}}</a>
+
+													{%- if child_link.links.size > 0 -%}
+														<ul class="dynamic-header__menu-mobile-grandchild">
+															{%- for grandchild_link in child_link.links -%}
+																<li class="dynamic-header__menu-mobile-grandchild-item">
+																	<a class="dynamic-header__menu-mobile-grandchild-link" href="{{ grandchild_link.url }}">{{- grandchild_link.title -}}</a>
+																</li>
+															{%- endfor -%}
+														</ul>
+													{%- endif -%}
+												</li>
+											{%- endfor -%}
+										</ul>
+									</div>
+								{%- else -%}
+									<a class="dynamic-header__menu-mobile-link" href="{{ link.url}}">{{- link.title -}}</a>
+								{%- endif -%}
+							</li>
+						{%- endif -%}
+					{%- endfor -%}
+				</ul>
+
+				<ul class="dynamic-header__menu-mobile-topheader-list">
+					{%- for link in top_menu_left.links -%}
+						{%- if link != blank -%}
+							<li class="dynamic-header__menu-mobile-topheader-item">
+								<a class="dynamic-header__menu-mobile-topheader-link" href="{{ link.url}}">{{- link.title -}}</a>
+							</li>
+						{%- endif -%}
+					{%- endfor -%}
+					{%- for link in top_menu_right.links -%}
+						{%- if link != blank -%}
+							<li class="dynamic-header__menu-mobile-topheader-item">
+								<a class="dynamic-header__menu-mobile-topheader-link" href="{{ link.url}}">{{- link.title -}}</a>
+							</li>
+						{%- endif -%}
+					{%- endfor -%}
+				</ul>
+
+				<ul class="dynamic-header__menu-mobile-social-list list-social" role="list">
+					{%- if settings.social_facebook != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_facebook_link }}" class="list-social__link">
+								{%- render 'icon-facebook' -%}
+								<span class="visually-hidden">{{ 'general.social.links.facebook' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_instagram != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_instagram_link }}" class="list-social__link">
+								{%- render 'icon-instagram' -%}
+								<span class="visually-hidden">{{ 'general.social.links.instagram' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_twitter != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_twitter_link }}" class="list-social__link">
+								{%- render 'icon-twitter' -%}
+								<span class="visually-hidden">{{ 'general.social.links.twitter' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_pinterest != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_pinterest_link }}" class="list-social__link">
+								{%- render 'icon-pinterest' -%}
+								<span class="visually-hidden">{{ 'general.social.links.pinterest' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_tiktok != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_tiktok_link }}" class="list-social__link">
+								{%- render 'icon-tiktok' -%}
+								<span class="visually-hidden">{{ 'general.social.links.tiktok' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_tumblr != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_tumblr_link }}" class="list-social__link">
+								{%- render 'icon-tumblr' -%}
+								<span class="visually-hidden">{{ 'general.social.links.tumblr' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_snapchat != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_snapchat_link }}" class="list-social__link">
+								{%- render 'icon-snapchat' -%}
+								<span class="visually-hidden">{{ 'general.social.links.snapchat' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_youtube != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_youtube_link }}" class="list-social__link">
+								{%- render 'icon-youtube' -%}
+								<span class="visually-hidden">{{ 'general.social.links.youtube' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+
+					{%- if settings.social_vimeo != blank -%}
+						<li class="list-social__item">
+							<a href="{{ settings.social_vimeo_link }}" class="list-social__link">
+								{%- render 'icon-vimeo' -%}
+								<span class="visually-hidden">{{ 'general.social.links.vimeo' | t }}</span>
+							</a>
+						</li>
+					{%- endif -%}
+				</ul>
+			</div>
+		</div>
+
+		<div class="dynamic-header-overlay"></div>
+	</div>
+</section>
+
+{% schema %}
+    {
+        "name": "Dynamic header",
+        "class": "section-header",
+        "settings": [
+            {
+                "type": "header",
+                "content": "Announcement bar"
+            },
+            {
+                "type": "checkbox",
+                "id": "hide_bar",
+                "default": false,
+                "label": "Hide top header menu"
+            },
+            {
+				"type": "link_list",
+				"id": "top_menu_left",
+				"label": "Top header menu left"
+            },
+			{
+				"type": "link_list",
+				"id": "top_menu_right",
+				"label": "Top header menu right"
+            },
+            {
+                "type": "header",
+                "content": "Header"
+            },
+            {
+				"type": "html",
+				"id": "logo_svg",
+				"label": "Logo svg"
+            },
+            {
+				"type": "image_picker",
+				"id": "logo",
+				"label": "Logo image",
+				"info": "This image wiil be visible only if the field of Logo svg is empty"
+            },
+			{
+				"type": "richtext",
+				"id": "paragraph",
+				"label": "Paragraph"
+			},
+            {
+				"type": "link_list",
+				"id": "main_menu",
+				"label": "Main desktop navigation"
+            },
+			{
+				"type": "link_list",
+				"id": "main_menu_mobile",
+				"label": "Main mobile navigation"
+            }
+        ]
+	}
+{% endschema %}

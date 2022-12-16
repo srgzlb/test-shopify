@@ -32,11 +32,9 @@
     "@shopify/theme-product": "^4.1.0",
     "@shopify/theme-product-form": "^4.1.0",
     "@shopify/theme-sections": "^4.0.2",
-    "axios": "^0.21.0",
     "body-scroll-lock": "^3.1.5",
     "es6-promise": "^4.2.8",
     "form-serialize": "^0.7.2",
-    "js-cookie": "^2.2.1",
     "swiper": "^6.7.5"
   },
   "devDependencies": {

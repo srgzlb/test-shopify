@@ -1,0 +1,19 @@
+.dynamic-header__top-menu {
+    border-bottom: 1px solid #000;
+    font-style: italic;
+    font-family: $font-secondary;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1.14;
+    display: none;
+
+    .container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+    }
+}
+
+.dynamic-header__top-menu-list {
+    display: flex;
+}

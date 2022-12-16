@@ -1,0 +1,17 @@
+development:
+  password: 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
+  theme_id: 140035096883
+  store: test-4478.myshopify.com
+  preview_url:
+  ignore_files:
+    - config/settings_data.json
+    - settings_data.json
+
+production:
+  password: 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
+  theme_id: 140035096883
+  store: test-4478.myshopify.com
+  preview_url:
+  ignore_files:
+    - config/settings_data.json
+    - settings_data.json

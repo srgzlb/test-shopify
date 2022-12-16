@@ -22,8 +22,6 @@ src/snippets/atb-icon-*.liquid
 
 src/config/settings_data.json
 
-config.yml
-
 yarn-error.log
 dist/
 uploads/

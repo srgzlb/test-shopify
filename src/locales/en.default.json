@@ -1,5 +1,11 @@
 {
   "general": {
+    "logo": {
+      "logo_text": "Logo"
+    },
+    "menu": {
+      "back": "Back"
+    },
     "password_page": {
       "login_form_heading": "Enter store using password:",
       "login_password_button": "Enter using password",
@@ -229,6 +235,9 @@
       "cart_count": {
         "one": "{{ count }} item",
         "other": "{{ count }} items"
+      },
+      "search": {
+        "placeholder": "Search here"
       }
     },
     "cart": {
