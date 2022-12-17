@@ -1,16 +1,16 @@
 import settings from "@savchukoleksii/shopify-theme-settings-tool";
 import * as sections from "@shopify/theme-sections";
-import Swiper, { Navigation, Pagination, Mousewheel, Scrollbar } from "swiper";
+import Swiper, { Navigation, Pagination } from "swiper";
 
-Swiper.use([Navigation, Pagination, Mousewheel, Scrollbar]);
+Swiper.use([Navigation, Pagination]);
 
 global.Swiper = Swiper;
 
-// const DOMContentLoadedPromise = new Promise((resolve) => {
-// 	document.addEventListener("DOMContentLoaded", async () => {
-// 		resolve();
-// 	});
-// });
+const DOMContentLoadedPromise = new Promise((resolve) => {
+	document.addEventListener("DOMContentLoaded", async () => {
+		resolve();
+	});
+});
 
 window.theme = window.theme || {};
 
@@ -20,6 +20,7 @@ window.theme = window.theme || {};
 /*================ Sections ================*/
 // require("./sections/slider");
 require("./sections/dynamic-header");
+// require("./sections/collection-carousel");
 
 (async () => {
 	try {

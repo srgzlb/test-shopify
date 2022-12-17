@@ -535,6 +535,49 @@
         "name": "Collage"
       }
     },
+    "collection-carousel": {
+			"name": "Collections carousel",
+			"blocks": {
+				"text": {
+					"name": "Collection",
+					"settings": {
+            "button_label": {
+							"label": "Button label"
+						},
+            "button_link": {
+							"label": "Button link"
+						},
+						"heading": {
+							"label": "Heading"
+						},
+            "description": {
+              "label": "Description"
+            },
+						"collection": {
+							"label": "Collection"
+						}
+					}
+				}
+			},
+			"settings": {
+				"header": {
+					"content": "Desktop settings",
+					"content_mobile": "Mobile settings"
+				},
+				"products_limit": {
+					"label": "Products limit"
+				},
+				"title": {
+					"label": "Title"
+				},
+				"text_color": {
+					"label": "Text color"
+				}
+			},
+			"presets": {
+				"name": "Collections carousel"
+			}
+		},
     "collection-list": {
       "name": "Collection list",
       "settings": {
@@ -1001,6 +1044,136 @@
         }
       }
     },
+    "hero-banner": {
+			"name": "Hero banner",
+			"settings": {
+				"adapt_height_first_image": {
+					"label": "Adapt section height to first image size",
+					"info": "Overwrites image banner height setting when checked."
+				},
+				"text_color": {
+					"label": "Text color"
+				},
+				"desktop_content_horizontal_position": {
+					"options__1": {
+						"label": "Left"
+					},
+					"options__2": {
+						"label": "Center"
+					},
+					"options__3": {
+						"label": "Right"
+					},
+					"label": "Content horizontal position"
+				},
+				"desktop_content_vertical_position": {
+					"options__1": {
+						"label": "Top"
+					},
+					"options__2": {
+						"label": "Middle"
+					},
+					"options__3": {
+						"label": "Bottom"
+					},
+					"label": "Content vertical position"
+				},
+				"desktop_text_alignment": {
+					"options__1": {
+						"label": "Left"
+					},
+					"options__2": {
+						"label": "Center"
+					},
+					"options__3": {
+						"label": "Right"
+					},
+					"label": "Content text alignment"
+				},
+				"full_width": {
+					"label": "Full width content"
+				},
+				"header": {
+					"content": "Desktop settings",
+					"mobile_content": "Mobile settings"
+				},
+				"image": {
+					"label": "Image"
+				},
+				"image_mobile": {
+					"label": "Image"
+				},
+				"image_overlay_opacity": {
+					"label": "Image overlay opacity"
+				},
+				"image_overlay_height": {
+					"label": "Image overlay height"
+				},
+				"image_overlay_color": {
+					"label": "Image overlay color"
+				},
+				"image_height": {
+					"label": "Section height",
+					"options__1": {
+						"label": "Small"
+					},
+					"options__2": {
+						"label": "Medium"
+					},
+					"options__3": {
+						"label": "Large"
+					},
+					"options__4": {
+						"label": "Full height"
+					},
+					"info": "For best results, use an image with a 3:2 aspect ratio. [Learn more](https:\/\/help.shopify.com\/manual\/shopify-admin\/productivity-tools\/image-editor#understanding-image-aspect-ratio)"
+				},
+				"image_link": {
+					"label": "Banner link"
+				},
+				"show_content_box": {
+					"label": "Show content block"
+				}
+			},
+			"blocks": {
+				"heading": {
+					"name": "Heading",
+					"settings": {
+						"heading": {
+							"label": "Heading"
+						}
+					}
+				},
+				"text": {
+					"name": "Text",
+					"settings": {
+						"text": {
+							"label": "Description"
+						},
+						"text_font_size": {
+							"label": "Font size"
+						}
+					}
+				},
+				"buttons": {
+					"name": "Button",
+					"settings": {
+						"button_label": {
+							"label": "Button label"
+						},
+						"button_link": {
+							"label": "Button link"
+						},
+						"button_style": {
+							"label": "Button style"
+						}
+					}
+				}
+			},
+			"presets": {
+				"name": "Hero banner"
+			}
+		},
     "image-banner": {
       "name": "Image banner",
       "settings": {

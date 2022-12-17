@@ -51,6 +51,39 @@ button {
     }
 }
 
+.button {
+    text-transform: uppercase;
+    border: none;
+    background: none;
+    padding: 0;
+    margin: 0;
+    position: relative;
+    min-width: auto;
+    min-height: auto;
+    color: $black;
+    font-family: $font-primary;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12px;
+    letter-spacing: 0.25em;
+    display: inline-block;
+    vertical-align: top;
+    &:before {
+        display: none;
+    }
+    &:after {
+        content: "";
+        position: absolute;
+        left: 0;
+        top: calc(100% + 2px) !important;
+        right: 0;
+        height: 1px;
+        border-bottom: 1px solid $black;
+        box-shadow: none !important;
+    }
+}
+
 .overflow-hidden-body {
     overflow: hidden;
 }
