@@ -14,12 +14,30 @@
 
     .page-scrolled & {
         align-self: flex-start;
+        @include breakpoint (large) {
+            flex: 1 1 auto;
+            justify-content: flex-end;
+        }
     }
-}
 
-.dynamic-header__column--left {
-    flex-direction: column;
-    align-items: flex-end;
+    &.dynamic-header__column--left {
+        flex-direction: column;
+        align-items: flex-end;
+        width: 100%;
+        @include breakpoint (large) {
+            flex-direction: row;
+            align-items: center;
+            justify-content: flex-start;
+            align-self: inherit;
+        }
+
+        .page-scrolled & {
+            @include breakpoint (large) {
+                flex: 0 1 auto;
+                width: auto;
+            }
+        }
+    }
 }
 
 .dynamic-header__logo {
@@ -28,7 +46,7 @@
 
     svg {
         width: 100%;
-        transition: width 0.2s linear;
+        transition: all 0.2s linear;
 
         .page-scrolled & {
             width: 105px;
@@ -43,6 +61,10 @@
             fill: currentColor;
         }
     }
+
+    &:hover {
+        opacity: 1;
+    }
 }
 
 .dynamic-header__description {
@@ -52,6 +74,10 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 1.38;
+    max-width: 428px;
+    @include breakpoint (large) {
+        padding-left: 7%;
+    }
 
     .page-scrolled & {
         display: none;
@@ -63,14 +89,104 @@
     display: flex;
     align-items: center;
     margin: 0 -13px 0 0;
+    @include breakpoint (large) {
+        padding: 37px 0;
+    }
 
     & > * {
         padding: 0 13px;
     }
 }
 
+.dynamic-header__bar-item {
+    .header-search-active & {
+        opacity: 0;
+        visibility: hidden;
+        @include breakpoint (large) {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.dynamic-header__search {
+    display: flex;
+    align-items: center;
+    @include breakpoint (large) {
+        position: relative;
+    }
+}
+
 .dynamic-header__search-container {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    top: 0;
+    transform: translateX(100%);
+    transition: all 0.2s linear;
+    display: flex;
+    align-items: center;
+    @include breakpoint (large) {
+        top: 100%;
+        left: auto;
+        right: 0;
+        width: 300px;
+    }
+
     .header__search--view & {
         display: flex !important;
+        transform: translateX(0);
     }
+
+    .page-scrolled & {
+        background: $beige;
+    }
+}
+
+.dynamic-header__search-input-wrapper {
+    flex: 1 1 auto;
+    padding: 20px;
+    @include breakpoint (large) {
+        padding: 10px;
+    }
+
+    input {
+        width: 100%;
+    }
+}
+
+.dynamic-header__search-opener {
+    .header-search-active & {
+        opacity: 0;
+        visibility: hidden;
+        @include breakpoint (large) {
+            opacity: 1;
+            visibility: visible;
+        }
+    }
+}
+
+.dynamic-header__search-close {
+    flex: 0 0 30px;
+    max-width: 30px;
+    margin-right: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    @include breakpoint (large) {
+        margin-right: 9px;
+    }
+
+    svg {
+        width: 20px;
+    }
+}
+
+.header--sticky {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	z-index: 1000;
+    background: $beige;
 }

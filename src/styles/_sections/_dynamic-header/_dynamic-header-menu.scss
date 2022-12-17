@@ -1,5 +1,5 @@
 .dynamic-header__menu {
-    @include breakpoint (large){
+    @include breakpoint (large) {
         display: flex !important;
         align-items: center;
     }
@@ -12,6 +12,13 @@
 .dynamic-header__menu-main-item {
     padding: 0 17px;
     position: relative;
+    font-family: $font-primary;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 1;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
 
     &.active {
         .dynamic-header__menu-dropdown {
@@ -24,9 +31,13 @@
     position: absolute;
     left: 50%;
     width: 300px;
-    background: #fff;
-    padding: 20px;
+    padding-top: 10px;
     transform: translateX(-50%);
+}
+
+.dynamic-header__menu-dropdown-columns {
+    background: $white;
+    padding: 20px;
 }
 
 .dynamic-header__menu-dropdown-item {

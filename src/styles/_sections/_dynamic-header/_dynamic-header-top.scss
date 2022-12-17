@@ -6,6 +6,9 @@
     font-size: 14px;
     line-height: 1.14;
     display: none;
+    @include breakpoint (large) {
+        display: block;
+    }
 
     .container {
         display: flex;
@@ -16,4 +19,10 @@
 
 .dynamic-header__top-menu-list {
     display: flex;
+    padding: 12px 0;
+    margin: 0 -19px;
+}
+
+.dynamic-header__top-menu-item {
+    padding: 0 19px;
 }
