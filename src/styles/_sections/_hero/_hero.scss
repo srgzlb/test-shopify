@@ -167,6 +167,10 @@
 	background: var(--button-background-mobile, none);
 	text-decoration: var(--button-underline-mobile);
 	color: var(--button-color-mobile, white);
+	@include breakpoint (large) {
+		display: none;
+	}
+
 	path {
 		stroke: var(--button-color-mobile, white);
 	}

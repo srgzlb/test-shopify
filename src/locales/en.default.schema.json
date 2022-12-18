@@ -365,6 +365,27 @@
         "padding_bottom": "Bottom padding"
       },
       "spacing": "Spacing",
+      "buttons": {
+				"accent": {
+					"label": "Accent"
+				},
+				"primary": {
+					"label": "Primary"
+				},
+				"secondary": {
+					"label": "Secondary"
+				},
+				"adapt": {
+					"label": "Adaptive color"
+				},
+				"link": {
+					"label": "Link"
+				},
+				"button_icon": {
+					"label": "Show icon"
+				},
+				"label": "Button style"
+			},
       "colors": {
         "accent_1": {
           "label": "Accent 1"
@@ -1163,9 +1184,6 @@
 						},
 						"button_link": {
 							"label": "Button link"
-						},
-						"button_style": {
-							"label": "Button style"
 						}
 					}
 				}
