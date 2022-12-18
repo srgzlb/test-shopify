@@ -5,7 +5,7 @@
 {%- assign text_color 				= section.settings.text_color -%}
 {%- assign title 					= section.settings.title -%}
 {%- assign title_size 				= section.settings.title_size -%}
-{%- assign products_limit 			= section.settings.products_limit -%}
+{%- assign collections_limit 		= section.settings.collections_limit -%}
 
 {%- capture variables -%}
     --padding-top: {{ padding_top }}px;
@@ -24,16 +24,16 @@
 	    <div class="collection-carousel__container container">
             {%- if title != blank -%}
                 <div class="collection-carousel__header">
-                    <h1 class="collection-carousel__title {{ title_size }}">
+                    <h2 class="collection-carousel__title {{ title_size }}">
                         {{- title | replace: "p>", "span>" -}}
-                    </h1>
+                    </h2>
                 </div>
             {%- endif -%}
 
             <div class="collection-carousel__slider">
                 <div class="collection-carousel__slider-container swiper-container slider__container js-collection-carousel-container">
                     <div class="collection-carousel__slider-wrapper swiper-wrapper slider__wrapper">
-                        {%- for block in section.blocks limit: products_limit -%}
+                        {%- for block in section.blocks limit: collections_limit -%}
                             {%- assign background = block.settings.background -%}
                             {%- assign collection = block.settings.collection -%}
                             {%- assign collection_title = block.settings.heading | default: collection.title -%}
@@ -82,7 +82,7 @@
 
                                 {%- if collection_url -%}
                                     <div class="collection-carousel__cta">
-                                        <a href="{{ collection_url }}" class="button button-primary collection-carousel__button">
+                                        <a href="{{ collection_url }}" class="button collection-carousel__button">
                                             {%- if collection_label != blank -%}
                                                 {{- collection_label -}}
                                             {%- else -%}
@@ -199,12 +199,12 @@
 			},
 			{
 				"type": "range",
-				"id": "products_limit",
+				"id": "collections_limit",
 				"min": 4,
 				"max": 10,
 				"step": 1,
 				"unit": "pcs",
-				"label": "t:sections.collection-carousel.settings.products_limit.label",
+				"label": "t:sections.collection-carousel.settings.collections_limit.label",
 				"default": 4
 			},
             {

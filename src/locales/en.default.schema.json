@@ -564,8 +564,8 @@
 					"content": "Desktop settings",
 					"content_mobile": "Mobile settings"
 				},
-				"products_limit": {
-					"label": "Products limit"
+				"collections_limit": {
+					"label": "Collections limit"
 				},
 				"title": {
 					"label": "Title"
@@ -2495,6 +2495,39 @@
         "name": "Page"
       }
     },
+    "product-carousel": {
+			"name": "Products carousel",
+			"settings": {
+        "collection": {
+          "label": "Collection"
+        },
+        "paragraph": {
+          "content": "Use custom fields for customizing products in collection"
+        },
+				"header": {
+					"content": "Desktop settings",
+					"content_mobile": "Mobile settings"
+				},
+        "button_label": {
+          "label": "Button label"
+        },
+        "button_link": {
+          "label": "Button link"
+        },
+				"products_limit": {
+					"label": "Products limit"
+				},
+				"title": {
+					"label": "Title"
+				},
+				"text_color": {
+					"label": "Text color"
+				}
+			},
+			"presets": {
+				"name": "Products carousel"
+			}
+		},
     "product-recommendations": {
       "name": "Product recommendations",
       "settings": {

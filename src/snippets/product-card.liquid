@@ -1,0 +1,99 @@
+{% comment %}
+    product 				- {product object} *required
+
+    Usage:
+    {%- render 'product-card' -%}
+{% endcomment %}
+
+{%- assign placeholder_image 	= settings.image_placeholder -%}
+
+{%- assign product_title 		= product.title -%}
+{%- assign product_url       	= product.url -%}
+{%- assign product_variant 		= product.variants | first -%}
+{%- assign inventory_policy 	= product_variant.inventory_policy -%}
+
+{%- assign has_sale = false -%}
+
+{%- assign min_product_price 	= product.price_min -%}
+{%- assign min_compare_price 	= product.compare_at_price_min -%}
+
+{%- if min_compare_price > min_product_price -%}
+	{%- assign has_sale = true -%}
+{%- endif -%}
+
+{%- assign out_of_stock = false -%}
+
+{%- if product_variant.inventory_quantity < 1 -%}
+	{%- assign out_of_stock = true -%}
+{%- endif -%}
+
+{%- capture product_images -%}
+	{%- assign featured_image 	= product.metafields.custom.product_image | default: product.featured_image | default: placeholder_image -%}
+	{%- assign secondary_image 	= product.images[1] -%}
+
+	<a href="{{- product_url -}}" class="product-card__image-wrapper">
+		{%- if secondary_image != blank -%}
+			<picture>
+				<img
+					src="{{ secondary_image | img_url: '367x' }}"
+					alt="{{ secondary_image.alt | default: product_title }}"
+					class="product-card__image product-card__image--secondary"
+					width="{{ secondary_image.width }}"
+					height="{{ secondary_image.height }}"
+				/>
+			</picture>
+		{%- endif -%}
+
+		<picture>
+			<img
+				src="{{ featured_image | img_url: '367x' }}"
+				alt="{{ featured_image.alt | default: product_title }}"
+				class="product-card__image"
+				width="{{ featured_image.width }}"
+				height="{{ featured_image.height }}"
+			/>
+		</picture>
+	</a>
+{%- endcapture -%}
+
+{%- capture product_meta -%}
+	<a href="{{ product_url }}" class="product-card__title">
+		{{- product_title -}}
+	</a>
+
+	<div class="product-card__price">
+		<span class="product-card__price-value product-card__price-value--compare-price{% unless has_sale %} hidden{% endunless %}">
+			{{- min_compare_price | money -}}
+		</span>
+
+		<span class="product-card__price-value{% if has_sale %} product-card__price-value--sale{% endif %}">
+			{{- min_product_price | money -}}
+		</span>
+	</div>
+
+	<form class="product-card__button-wrapper" method="post" action="/cart/add" data-add-to-cart-form>
+		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+		<input class="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
+		<button class="button product-card__button{% if out_of_stock and inventory_policy == "deny" %} product-card__button--disabled{%- endif -%}">
+			{%- if out_of_stock and inventory_policy == "deny" -%}
+				{{- 'products.product.sold_out' | t -}}
+			{%- elsif out_of_stock and inventory_policy == "continue" -%}
+				{{ "products.product.add_to_cart" | t }}
+			{%- else -%}
+				{{ "products.product.add_to_cart" | t }}
+			{%- endif -%}
+		</button>
+	</form>
+{%- endcapture -%}
+
+{%- if product != blank -%}
+	<div class="product-card">
+		<div class="product-card__media">
+			{{- product_images -}}
+		</div>
+
+		<div class="product-card__meta">
+			{{- product_meta -}}
+		</div>
+	</div>
+{%- endif -%}

@@ -1,0 +1,126 @@
+.product-carousel-section {
+	position: relative;
+}
+
+.product-carousel {
+	position: relative;
+	color: var(--text-color, $black);
+}
+
+.product-carousel--padding-top {
+	padding-top: var(--padding-top-mobile, 20px);
+	@include breakpoint(medium) {
+		padding-top: var(--padding-top, 40px);
+	}
+}
+
+.product-carousel--padding-bottom {
+	padding-bottom: var(--padding-bottom-mobile, 20px);
+	@include breakpoint(medium) {
+		padding-bottom: var(--padding-bottom, 40px);
+	}
+}
+
+.product-carousel__container {
+	position: relative;
+	z-index: 1;
+}
+
+.product-carousel__header {
+	position: relative;
+	display: flex;
+	justify-content: center;
+	flex-direction: column;
+	padding: 0 0 12px;
+}
+
+.product-carousel__title {
+	margin: 0 0 8px;
+	text-align: center;
+	@include breakpoint(large) {
+		margin: 0 0 38px;
+	}
+	em {
+		font-size: calc(100% + 4px);
+		line-height: 1.2;
+	}
+}
+
+.product-carousel__slider-wrapper {
+	padding-bottom: 20px;
+}
+
+.product-carousel__slide {
+	height: auto;
+	padding: 0 5px;
+	max-width: 73%;
+	@include breakpoint(medium) {
+		max-width: 37%;
+	}
+	@include breakpoint(large) {
+		max-width: 25%;
+	}
+
+	&:first-child {
+		margin-left: 5px;
+		@include breakpoint(large) {
+			margin-left: 0;
+		}
+	}
+
+	&:last-child {
+		margin-right: 5px;
+		@include breakpoint(large) {
+			margin-right: 0;
+		}
+	}
+}
+
+.product-carousel__slider {
+	overflow: hidden;
+	margin: 0 -20px;
+	padding: 10px 0 0;
+	@include breakpoint(large) {
+		margin: 0 -6px;
+	}
+}
+
+.product-carousel__prev,
+.product-carousel__next {
+	top: 30%;
+	right: 0;
+	z-index: 1;
+	display: none;
+	justify-content: center;
+	align-items: center;
+	width: 40px;
+	height: 40px;
+	margin: 0;
+	background: $white;
+	transform: translateY(-50%);
+
+	&.swiper-button-disabled {
+		visibility: hidden;
+		opacity: 0;
+	}
+
+	&::after {
+		content: "";
+		display: none;
+	}
+}
+
+.product-carousel__prev {
+	left: 0;
+	right: auto;
+	transform: translateY(-50%) rotate(180deg);
+}
+
+.product-carousel__slider-container {
+	&.initialized {
+		.product-carousel__prev,
+		.product-carousel__next {
+			display: flex;
+		}
+	}
+}
