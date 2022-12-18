@@ -6,11 +6,6 @@ Swiper.use([Navigation, Pagination]);
 
 global.Swiper = Swiper;
 
-const DOMContentLoadedPromise = new Promise((resolve) => {
-	document.addEventListener("DOMContentLoaded", async () => {
-		resolve();
-	});
-});
 
 window.theme = window.theme || {};
 
@@ -18,9 +13,9 @@ window.theme = window.theme || {};
 require("./components/slider/slider");
 
 /*================ Sections ================*/
-// require("./sections/slider");
 require("./sections/dynamic-header");
-// require("./sections/collection-carousel");
+require("./sections/collection-carousel");
+require("./sections/product-carousel");
 
 (async () => {
 	try {
@@ -28,8 +23,6 @@ require("./sections/dynamic-header");
 			settings.load(),
 			DOMContentLoadedPromise
 		]);
-
-		// document.dispatchEvent(new CustomEvent("theme:all:loaded"));
 	} catch (error) {}
 
 	sections.load("*");

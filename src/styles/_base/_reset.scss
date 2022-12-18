@@ -71,6 +71,10 @@ button {
     letter-spacing: 0.25em;
     display: inline-block;
     vertical-align: top;
+    &.disabled {
+        pointer-events: none;
+        opacity: 0.5;
+    }
     &:before {
         display: none;
     }

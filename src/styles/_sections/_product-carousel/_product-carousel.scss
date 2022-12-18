@@ -53,26 +53,13 @@
 .product-carousel__slide {
 	height: auto;
 	padding: 0 5px;
-	max-width: 73%;
+	max-width: 76.5%;
 	@include breakpoint(medium) {
-		max-width: 37%;
+		max-width: 42%;
 	}
 	@include breakpoint(large) {
-		max-width: 25%;
-	}
-
-	&:first-child {
-		margin-left: 5px;
-		@include breakpoint(large) {
-			margin-left: 0;
-		}
-	}
-
-	&:last-child {
-		margin-right: 5px;
-		@include breakpoint(large) {
-			margin-right: 0;
-		}
+		max-width: 33.3333%;
+		padding: 0 1px;
 	}
 }
 
@@ -80,24 +67,55 @@
 	overflow: hidden;
 	margin: 0 -20px;
 	padding: 10px 0 0;
+	position: relative;
 	@include breakpoint(large) {
-		margin: 0 -6px;
+		margin: 0 -2px;
+	}
+	&:before,
+	&:after {
+		content: "";
+		position: absolute;
+		left: 0;
+		top: 0;
+		bottom: 0;
+		width: 30px;
+		background: linear-gradient(90deg, $beige 0%, rgba(244, 237, 229, 0) 100%);
+		z-index: 2;
+		@include breakpoint(large) {
+			display: none;
+		}
+	}
+	&:after {
+		left: auto;
+		right: 0;
+		background: linear-gradient(270deg, $beige 0%, rgba(244, 237, 229, 0) 100%);
 	}
 }
 
 .product-carousel__prev,
 .product-carousel__next {
-	top: 30%;
+	top: 50%;
 	right: 0;
-	z-index: 1;
+	z-index: 3;
 	display: none;
 	justify-content: center;
 	align-items: center;
 	width: 40px;
 	height: 40px;
 	margin: 0;
-	background: $white;
 	transform: translateY(-50%);
+	display: none;
+	@include breakpoint(large) {
+		top: 46%;
+	}
+
+	svg {
+		width: 30px;
+	}
+
+	path {
+		fill: $black;
+	}
 
 	&.swiper-button-disabled {
 		visibility: hidden;
@@ -117,10 +135,39 @@
 }
 
 .product-carousel__slider-container {
+	@include breakpoint(large) {
+		padding-left: 52px;
+		padding-right: 52px;
+	}
 	&.initialized {
 		.product-carousel__prev,
 		.product-carousel__next {
-			display: flex;
+			@include breakpoint(large) {
+				display: flex;
+			}
 		}
+	}
+	&:after,
+	&:before {
+		@include breakpoint(large) {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 52px;
+			background: $green;
+			transition: all 0.2s linear;
+			z-index: 2;
+		}
+		.page-scrolled & {
+			@include breakpoint(large) {
+				background: $beige;
+			}
+		}
+	}
+	&:after {
+		left: auto;
+		right: 0;
 	}
 }

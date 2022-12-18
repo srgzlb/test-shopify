@@ -7,7 +7,7 @@
 
 {%- assign placeholder_image 	= settings.image_placeholder -%}
 
-{%- assign product_title 		= product.title -%}
+{%- assign product_title 		= product.metafields.custom.product_title | default: product.title -%}
 {%- assign product_url       	= product.url -%}
 {%- assign product_variant 		= product.variants | first -%}
 {%- assign inventory_policy 	= product_variant.inventory_policy -%}
@@ -57,24 +57,26 @@
 {%- endcapture -%}
 
 {%- capture product_meta -%}
-	<a href="{{ product_url }}" class="product-card__title">
-		{{- product_title -}}
-	</a>
+	<div class="product-card__meta-top">
+		<a href="{{ product_url }}" class="product-card__title">
+			{{- product_title -}}
+		</a>
 
-	<div class="product-card__price">
-		<span class="product-card__price-value product-card__price-value--compare-price{% unless has_sale %} hidden{% endunless %}">
-			{{- min_compare_price | money -}}
-		</span>
+		<div class="product-card__price">
+			<span class="product-card__price-value product-card__price-value--compare-price{% unless has_sale %} hidden{% endunless %}">
+				{{- min_compare_price | money -}}
+			</span>
 
-		<span class="product-card__price-value{% if has_sale %} product-card__price-value--sale{% endif %}">
-			{{- min_product_price | money -}}
-		</span>
+			<span class="product-card__price-value{% if has_sale %} product-card__price-value--sale{% endif %}">
+				{{- min_product_price | money -}}
+			</span>
+		</div>
 	</div>
 
 	<form class="product-card__button-wrapper" method="post" action="/cart/add" data-add-to-cart-form>
 		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
 		<input class="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
-		<button class="button product-card__button{% if out_of_stock and inventory_policy == "deny" %} product-card__button--disabled{%- endif -%}">
+		<button class="button product-card__button{% if out_of_stock and inventory_policy == "deny" %} disabled{%- endif -%}">
 			{%- if out_of_stock and inventory_policy == "deny" -%}
 				{{- 'products.product.sold_out' | t -}}
 			{%- elsif out_of_stock and inventory_policy == "continue" -%}

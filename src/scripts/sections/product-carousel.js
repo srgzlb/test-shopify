@@ -2,10 +2,11 @@ import { register } from "@shopify/theme-sections";
 import Slider from "../components/slider/slider";
 
 const selectors = {
-	sliderContainer: ".js-collection-carousel-container",
-	arrowNext: ".js-collection-carousel-next",
-	arrowPrev: ".js-collection-carousel-prev",
-	pagination: ".js-collection-carousel-pagination"
+    addToCart: "[data-add-to-cart-form]",
+	sliderContainer: ".js-product-carousel-container",
+	arrowNext: ".js-product-carousel-next",
+	arrowPrev: ".js-product-carousel-prev",
+	pagination: ".js-product-carousel-pagination"
 };
 
 const modifiers = {
@@ -13,9 +14,10 @@ const modifiers = {
 	initialized: "initialized"
 };
 
-register("collection-carousel", {
+register("product-carousel", {
 	onLoad: function () {
 		this.initSlider();
+        this.container.addEventListener("click", this.initAddToCart.bind(this));
 	},
 	initSlider() {
 		this.sliderContainers = [
@@ -39,6 +41,7 @@ register("collection-carousel", {
 			this.options = {
 				slidesPerView: "auto",
 				spaceBetween: 0,
+                centeredSlides: true,
 				navigation: {
 					nextEl: this.sliderArrowsNext[index],
 					prevEl: this.sliderArrowsPrev[index]
@@ -47,6 +50,11 @@ register("collection-carousel", {
 					el: this.sliderPagination[index],
 					type: "bullets"
 				},
+                breakpoints: {
+                    1024: {
+                        centeredSlides: false
+                    },
+                },
 				on: {
 					afterInit: () => {
 						slider.classList.add(modifiers.initialized);
@@ -55,6 +63,19 @@ register("collection-carousel", {
 			};
 
 			this.slider = new Slider(slider, this.options);
+		});
+	},
+    initAddToCart() {
+		this.addToCartBtns = [
+			...this.container.querySelectorAll(selectors.addToCart)
+		];
+
+		if (!this.addToCartBtns.length) {
+			return null;
+		}
+
+		this.addToCartBtns.forEach((button) => {
+            console.log(button)
 		});
 	},
 	onUnload: function () {
