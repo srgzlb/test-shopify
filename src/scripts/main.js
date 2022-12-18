@@ -15,7 +15,7 @@ const DOMContentLoadedPromise = new Promise((resolve) => {
 window.theme = window.theme || {};
 
 /*================ Components ================*/
-// require("./components/slider/slider");
+require("./components/slider/slider");
 
 /*================ Sections ================*/
 // require("./sections/slider");
