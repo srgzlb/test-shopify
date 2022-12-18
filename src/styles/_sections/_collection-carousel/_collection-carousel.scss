@@ -37,6 +37,9 @@
 .collection-carousel__title {
 	margin: 0 0 8px;
 	text-align: center;
+	@include breakpoint(large) {
+		margin: 0 0 38px;
+	}
 	em {
 		font-size: calc(100% + 4px);
 		line-height: 1.2;
@@ -52,7 +55,7 @@
 	padding: 0 5px;
 	max-width: 73%;
 	@include breakpoint(medium) {
-		max-width: 33.333%;
+		max-width: 37%;
 	}
 	@include breakpoint(large) {
 		max-width: 25%;
@@ -60,9 +63,6 @@
 
 	&:first-child {
 		margin-left: 5px;
-		@include breakpoint(medium) {
-			margin-left: 24px;
-		}
 		@include breakpoint(large) {
 			margin-left: 0;
 		}
@@ -70,9 +70,6 @@
 
 	&:last-child {
 		margin-right: 5px;
-		@include breakpoint(medium) {
-			margin-right: 24px;
-		}
 		@include breakpoint(large) {
 			margin-right: 0;
 		}
@@ -89,21 +86,31 @@
 }
 
 .collection-carousel__slide-content {
-	padding: 10px;
+	padding: 10px 10px 60px;
 	text-align: center;
 	font-family: $font-secondary;
 	line-height: 1.29;
 	font-size: 14px;
+	display: flex;
+	flex-direction: column;
 	height: 100%;
+	background: var(--background, $green);
 }
 
 .collection-carousel__slide-media {
 	position: relative;
 	margin: 0 0 21px;
+	flex: 0 1 auto;
+	@include breakpoint(large) {
+		margin: 0 0 30px;
+	}
 	&:after {
 		content: "";
 		display: block;
 		padding-bottom: 74%;
+		@include breakpoint(large) {
+			padding-bottom: 72%;
+		}
 	}
 }
 
@@ -124,6 +131,9 @@
 
 .collection-carousel__card-header {
 	padding: 0 0 12px;
+	@include breakpoint(large) {
+		padding: 0 0 16px;
+	}
 }
 
 .collection-carousel__image-wrapper {
@@ -139,6 +149,8 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: space-between;
+	flex: 1 1 auto;
+	max-width: 280px;
 }
 
 .collection-carousel__image {

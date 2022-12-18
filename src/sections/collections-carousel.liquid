@@ -34,6 +34,7 @@
                 <div class="collection-carousel__slider-container swiper-container slider__container js-collection-carousel-container">
                     <div class="collection-carousel__slider-wrapper swiper-wrapper slider__wrapper">
                         {%- for block in section.blocks limit: products_limit -%}
+                            {%- assign background = block.settings.background -%}
                             {%- assign collection = block.settings.collection -%}
                             {%- assign collection_title = block.settings.heading | default: collection.title -%}
                             {%- assign collection_description = block.settings.description | default: collection.description -%}
@@ -45,6 +46,10 @@
                             {%- elsif collection.products.first and collection.products.first.images != empty -%}
                                 {%- assign collection_image = collection.products.first.featured_image | default: placeholder_image -%}
                             {%- endif -%}
+
+                            {%- capture block_variables -%}
+                                --background: {{ background }};
+                            {%- endcapture -%}
 
                             {%- capture collection_img -%}
                                 <a href="{{ collection_url }}" class="collection-carousel__image-wrapper">
@@ -89,7 +94,7 @@
                             {%- endcapture -%}
 
                             {%- if collection -%}
-                                <div class="collection-carousel__slide swiper-slide slider__slide">
+                                <div class="collection-carousel__slide swiper-slide slider__slide" style="{{- block_variables | escape -}}">
                                     <div class="collection-carousel__slide-content">
                                         <div class="collection-carousel__slide-media">
                                             {{- collection_img -}}
@@ -144,6 +149,12 @@
                         "type": "text",
                         "id": "button_label",
                         "label": "t:sections.collection-carousel.blocks.text.settings.button_label.label"
+                    },
+                    {
+                        "type": "color",
+                        "id": "background",
+                        "label": "Background",
+                        "default": "#85ABBD"
                     },
                     {
                         "type": "collection",
