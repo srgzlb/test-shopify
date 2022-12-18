@@ -10,8 +10,10 @@
 	}
 	&:hover {
 		.product-card__button-wrapper {
-			opacity: 1;
-			visibility: visible;
+			@include breakpoint(large) {
+				opacity: 1;
+				visibility: visible;
+			}
 		}
 	}
 }
@@ -86,13 +88,18 @@
 }
 
 .product-card__button-wrapper {
-	opacity: 0;
-	visibility: hidden;
 	position: absolute;
-	bottom: -24px;
-	left: 50%;
-	transform: translate(-50%, 0);
+	right: 12px;
+	bottom: 0;
 	transition: all 0.2s linear;
+	@include breakpoint(large) {
+		opacity: 0;
+		visibility: hidden;
+		transform: translate(-50%, 0);
+		left: 50%;
+		right: auto;
+		bottom: -24px;
+	}
 }
 
 .product-card__image {

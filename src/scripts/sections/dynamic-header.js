@@ -73,27 +73,27 @@ register("dynamic-header", {
 		this.mobileMenuCloser.addEventListener("click", this.initMobileMenuClose.bind(this));
 
 		this.mobileParentLinkArray.forEach((link) => {
-			link.addEventListener(
-				"click",
-				this.initMobileDropdownOpen.bind(this)
-			);
+			link.addEventListener("click", this.initMobileDropdownOpen.bind(this));
 		});
-		this.mobileMenuContainer.addEventListener(
-			"click",
-			this.initMobileDropdownClose.bind(this)
-		);
+		this.mobileMenuContainer.addEventListener("click",this.initMobileDropdownClose.bind(this));
 		window.addEventListener("scroll", this.initHeaderScroll.bind(this));
 		window.addEventListener("resize", this.initHeaderHeight.bind(this));
 	},
-	initSearchOpen: function () {
+	initSearchOpen: function (e) {
+		e.preventDefault();
+
 		if (!this.searchContainer) {
 			return false;
 		}
 
 		document.querySelector(selectors.body).classList.add(modifiers.searchActive);
+		document.querySelector(selectors.body).classList.remove(modifiers.overflow);
+		this.mobileMenuContainer.classList.remove(modifiers.mobileMenuOpened);
 		this.searchContainer.classList.add(modifiers.searchView);
 	},
-	initSearchClose: function () {
+	initSearchClose: function (e) {
+		e.preventDefault();
+
 		if (!this.searchContainer) {
 			return false;
 		}
@@ -136,6 +136,8 @@ register("dynamic-header", {
 		document.querySelector(selectors.body).classList.toggle(modifiers.overflow);
 	},
 	initMobileMenuOpen: function (e) {
+		e.preventDefault();
+
 		const target = e.target;
 		const opener = target.closest(selectors.menuMobile.mobileMenuOpener);
 
@@ -147,6 +149,8 @@ register("dynamic-header", {
 		this.overflowBody();
 	},
 	initMobileMenuClose: function (e) {
+		e.preventDefault();
+
 		const target = e.target;
 		const closer = target.closest(selectors.menuMobile.mobileMenuCloser);
 

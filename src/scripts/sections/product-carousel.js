@@ -2,11 +2,17 @@ import { register } from "@shopify/theme-sections";
 import Slider from "../components/slider/slider";
 
 const selectors = {
-    addToCart: "[data-add-to-cart-form]",
+    addToCartButton: "[data-add-to-cart]",
 	sliderContainer: ".js-product-carousel-container",
 	arrowNext: ".js-product-carousel-next",
 	arrowPrev: ".js-product-carousel-prev",
 	pagination: ".js-product-carousel-pagination"
+};
+
+const data = {
+	name: "name",
+	id: "id",
+	value: "value"
 };
 
 const modifiers = {
@@ -65,18 +71,27 @@ register("product-carousel", {
 			this.slider = new Slider(slider, this.options);
 		});
 	},
-    initAddToCart() {
-		this.addToCartBtns = [
-			...this.container.querySelectorAll(selectors.addToCart)
+    initAddToCart(e) {
+		e.preventDefault();
+
+		this.addToCartButtons = [
+			...this.container.querySelectorAll(selectors.addToCartButton)
 		];
 
-		if (!this.addToCartBtns.length) {
+		if (!this.addToCartButtons.length) {
 			return null;
 		}
 
-		this.addToCartBtns.forEach((button) => {
-            console.log(button)
-		});
+		let target = e.target
+		let elements = [...target.parentNode.children].filter((child) => child !== target);
+
+		elements.forEach((el) => {
+			let attr = el.getAttribute(data.name);
+			if (attr === data.id) {
+				let value = el.getAttribute(data.value);
+				console.log(`Product with ID ${value} added to cart`);
+			}
+		})
 	},
 	onUnload: function () {
 		if (!this.slider) {

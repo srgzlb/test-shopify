@@ -73,10 +73,10 @@
 		</div>
 	</div>
 
-	<form class="product-card__button-wrapper" method="post" action="/cart/add" data-add-to-cart-form>
-		<input type="hidden" name="id" value="{{ product.variants.first.id }}" />
+	<form class="product-card__button-wrapper" method="post" action="/cart/add">
+		<input class="product__id" type="hidden" name="id" value="{{ product.variants.first.id }}" />
 		<input class="hidden" min="1" type="number" id="quantity" name="quantity" value="1"/>
-		<button class="button product-card__button{% if out_of_stock and inventory_policy == "deny" %} disabled{%- endif -%}">
+		<button class="button product-card__button{% if out_of_stock and inventory_policy == "deny" %} disabled{%- endif -%}" data-add-to-cart>
 			{%- if out_of_stock and inventory_policy == "deny" -%}
 				{{- 'products.product.sold_out' | t -}}
 			{%- elsif out_of_stock and inventory_policy == "continue" -%}

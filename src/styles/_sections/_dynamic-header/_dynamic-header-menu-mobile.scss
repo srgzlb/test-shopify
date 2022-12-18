@@ -8,7 +8,7 @@
     padding-bottom: 30px;
     transform: translateX(-100%);
     transition: all 0.3s ease-out;
-    background: $beige;
+    background: $green;
     z-index: 100;
     font-weight: 400;
     transition: all 0.2s linear;
@@ -18,9 +18,12 @@
     line-height: 1;
     letter-spacing: 0.25em;
     text-transform: uppercase;
-
     @include breakpoint (large){
         display: none;
+    }
+
+    .page-scrolled & {
+        background: $beige;
     }
 
     &.mobile-menu-opened {
