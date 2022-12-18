@@ -134,6 +134,20 @@
 	transform: translateY(-50%) rotate(180deg);
 }
 
+.product-carousel__link {
+	text-align: center;
+	padding: 40px 0 0;
+	@include breakpoint(large) {
+		padding: 50px 0 0;
+	}
+	.button {
+		font-size: 12px;
+		@include breakpoint(large) {
+			font-size: 16px;
+		}
+	}
+}
+
 .product-carousel__slider-container {
 	@include breakpoint(large) {
 		padding-left: 52px;
