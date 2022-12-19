@@ -219,7 +219,8 @@
 
     {{ 'base.css' | asset_url | stylesheet_tag }}
     <link rel="preload stylesheet" as="style" href="{{- 'main.build.css' | asset_url -}}">
-    {{ 'application.css' | asset_url | stylesheet_tag }}
+    <!-- Tailwind CSS CDN link -->
+    <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
     {%- unless settings.type_body_font.system? -%}
       <link rel="preload" as="font" href="{{ settings.type_body_font | font_url }}" type="font/woff2" crossorigin>

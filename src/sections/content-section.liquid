@@ -1,256 +1,144 @@
-{%- assign padding_top 					= section.settings.padding_top -%}
-{%- assign padding_bottom 				= section.settings.padding_bottom -%}
-{%- assign padding_top_mobile 			= section.settings.padding_top_mobile -%}
-{%- assign padding_bottom_mobile 		= section.settings.padding_bottom_mobile -%}
-{%- assign overlay_opacity 				= section.settings.image_overlay_opacity -%}
-{%- assign overlay_opacity_mobile 		= section.settings.image_overlay_opacity_mobile -%}
-{%- assign overlay_height 				= section.settings.image_overlay_height -%}
-{%- assign overlay_height_mobile 		= section.settings.image_overlay_height_mobile -%}
-{%- assign desktop_vertical_position 	= section.settings.desktop_content_vertical_position -%}
-{%- assign mobile_vertical_position 	= section.settings.mobile_content_vertical_position -%}
-{%- assign desktop_horizontal_position 	= section.settings.desktop_content_horizontal_position -%}
-{%- assign mobile_horizontal_position 	= section.settings.mobile_content_horizontal_position -%}
-{%- assign desktop_text_alignment 		= section.settings.desktop_text_alignment -%}
-{%- assign mobile_text_alignment 		= section.settings.mobile_text_alignment -%}
-{%- assign text_color 					= section.settings.text_color -%}
-{%- assign text_color_mobile 			= section.settings.text_color_mobile -%}
-{%- assign image_height 				= section.settings.image_height -%}
-{%- assign mobile_image_height 			= section.settings.mobile_image_height -%}
-{%- assign image_overlay_color 			= section.settings.image_overlay_color -%}
-{%- assign image_overlay_color_mobile 	= section.settings.image_overlay_color_mobile -%}
-{%- assign show_content 				= section.settings.show_content_box -%}
-{%- assign show_content_mobile 			= section.settings.show_content_box_mobile -%}
-{%- assign full_width 					= section.settings.full_width -%}
-{%- assign image 						= section.settings.image | default: settings.image_placeholder -%}
-{%- assign image_mobile 				= section.settings.image_mobile | default: settings.image_placeholder -%}
-{%- assign adapt_height 				= section.settings.adapt_height_first_image -%}
-{%- assign mobile_adapt_height 			= section.settings.mobile_adapt_height_first_image -%}
-{%- assign image_link 					= section.settings.image_link -%}
-{%- assign image_link_mobile 			= section.settings.image_link_mobile -%}
+{%- assign padding_top 				= section.settings.padding_top -%}
+{%- assign padding_bottom 			= section.settings.padding_bottom -%}
+{%- assign padding_top_mobile 		= section.settings.padding_top_mobile -%}
+{%- assign padding_bottom_mobile 	= section.settings.padding_bottom_mobile -%}
+{%- assign full_width 				= section.settings.full_width -%}
 
 {%- capture variables -%}
     --padding-top: {{ padding_top }}px;
     --padding-bottom: {{ padding_bottom }}px;
 	--padding-top-mobile: {{ padding_top_mobile }}px;
     --padding-bottom-mobile: {{ padding_bottom_mobile }}px;
-    --overlay-opacity: {{ overlay_opacity }}%;
-    --overlay-opacity-mobile: {{ overlay_opacity_mobile }}%;
-	--overlay-height: {{ overlay_height }}%;
-    --overlay-height-mobile: {{ overlay_height_mobile }}%;
-	--overlay-color: {{ image_overlay_color }};
-	--overlay-color-mobile: {{ image_overlay_color_mobile }};
-	--text-color: {{ text_color }};
-	--text-color-mobile: {{ text_color_mobile }};
-
-    {%- case desktop_vertical_position -%}
-        {% when 'top' %}
-            --align-self: flex-start;
-        {% when 'middle' %}
-            --align-self: center;
-        {% when 'bottom' %}
-            --align-self: flex-end;
-    {%- endcase -%}
-
-	{%- case mobile_vertical_position -%}
-        {% when 'top' %}
-            --align-self-mobile: flex-start;
-        {% when 'middle' %}
-            --align-self-mobile: center;
-        {% when 'bottom' %}
-            --align-self-mobile: flex-end;
-    {%- endcase -%}
-
-	{%- case desktop_horizontal_position -%}
-        {% when 'left' %}
-            --justify-content: flex-start;
-        {% when 'center' %}
-            --justify-content: center;
-        {% when 'right' %}
-            --justify-content: flex-end;
-    {%- endcase -%}
-
-	{%- case mobile_horizontal_position -%}
-        {% when 'left' %}
-            --justify-content-mobile: flex-start;
-        {% when 'center' %}
-            --justify-content-mobile: center;
-        {% when 'right' %}
-            --justify-content-mobile: flex-end;
-    {%- endcase -%}
-
-	{%- case desktop_text_alignment -%}
-        {% when 'left' %}
-            --text-align: left;
-        {% when 'center' %}
-            --text-align: center;
-        {% when 'right' %}
-            --text-align: right;
-    {%- endcase -%}
-
-	{%- case mobile_text_alignment -%}
-        {% when 'left' %}
-            --text-align-mobile: left;
-        {% when 'center' %}
-            --text-align-mobile: center;
-        {% when 'right' %}
-            --text-align-mobile: right;
-    {%- endcase -%}
-
-	{%- case image_height -%}
-        {% when 'small' %}
-			--section-height: 500px;
-        {% when 'medium' %}
-			--section-height: 650px;
-        {% when 'large' %}
-			--section-height: 800px;
-		{% when 'full_height' %}
-			--section-height: 100vh;
-    {%- endcase -%}
-
-	{%- case mobile_image_height -%}
-        {% when 'small' %}
-			--section-height-mobile: 400px;
-        {% when 'medium' %}
-			--section-height-mobile: 550px;
-        {% when 'large' %}
-			--section-height-mobile: 100vh;
-    {%- endcase -%}
 {%- endcapture -%}
 
-{%- if section.block.size > 0 -%}
+{%- if section.blocks.size > 0 -%}
+	<div class="content-section{% if padding_top != 0 or padding_top_mobile != 0 %} content-section--padding-top{% endif %}{% if padding_bottom != 0 or padding_bottom_mobile != 0 %} content-section--padding-bottom{% endif %}"
+		 style="{{- variables | escape -}}"
+	>
+		{%- unless full_width -%}<div class="container">{%- endunless -%}
+			<div class="-mx-4 lg:flex">
+				{%- for block in section.blocks -%}
+					{%- assign overlay_opacity 		= block.settings.overlay_opacity -%}
+					{%- assign overlay_height 		= block.settings.overlay_height -%}
+					{%- assign overlay_color 		= block.settings.overlay_color -%}
+					{%- assign color 				= block.settings.color -%}
+					{%- assign font_size 			= block.settings.font_size -%}
+					{%- assign vertical_position 	= block.settings.vertical_position -%}
+					{%- assign horizontal_position 	= block.settings.horizontal_position -%}
+					{%- assign text_alignment 		= block.settings.text_alignment -%}
+					{%- assign image_height 		= block.settings.image_height -%}
+					{%- assign heading_size 		= block.settings.heading_size -%}
+					{%- assign heading 				= block.settings.heading -%}
+					{%- assign show_content 		= block.settings.show_content -%}
+					{%- assign text 				= block.settings.text -%}
+					{%- assign button_label 		= block.settings.button_label -%}
+					{%- assign button_link 			= block.settings.button_link -%}
+					{%- assign adapt_height 		= block.settings.adapt_height -%}
+					{%- assign image 				= block.settings.image | default: settings.image_placeholder -%}
+					{%- assign image_mobile 		= block.settings.image_mobile -%}
 
-<div class="hero" style="{{- variables | escape -}}">
-	<div class="hero__text-wrapper{% if show_content %} hero__text-wrapper--desktop{% endif %}{% if show_content_mobile %} hero__text-wrapper--mobile{% endif %}">
-		{%- unless full_width -%}<div class="hero__container container">{%- endunless -%}
-			<div class="hero__text-block{% if mobile_adapt_height %} hero__text-block--adapt-mobile{% endif %}{% if padding_top != 0 or padding_top_mobile != 0 %} hero__text-block--padding-top{% endif %}{% if padding_bottom != 0 or padding_bottom_mobile != 0 %} hero__text-block--padding-bottom{% endif %}">
-				<div class="hero__text">
-					{%- for block in section.blocks -%}
-						{%- assign heading 				= block.settings.heading -%}
-						{%- assign heading_mobile 		= block.settings.heading_mobile -%}
-						{%- assign heading_size 		= block.settings.heading_size -%}
-						{%- assign heading_size_mobile 	= block.settings.heading_size_mobile -%}
-						{%- assign text 				= block.settings.text -%}
-						{%- assign text_mobile 			= block.settings.text_mobile -%}
-						{%- assign font_size 			= block.settings.text_font_size -%}
-						{%- assign font_size_mobile 	= block.settings.text_font_size_mobile -%}
-						{%- assign button_label 		= block.settings.button_label -%}
-						{%- assign button_link 			= block.settings.button_link -%}
-						{%- assign button_label_mobile 	= block.settings.button_label_mobile -%}
-						{%- assign button_link_mobile 	= block.settings.button_link_mobile -%}
-						{%- assign button_icon 			= block.settings.show_button_icon -%}
-						{%- assign button_icon_mobile 	= block.settings.show_button_icon_mobile -%}
+					{%- capture block_variables -%}
+						--overlay-opacity: {{ overlay_opacity }}%;
+						--overlay-height: {{ overlay_height }}%;
+						--overlay-color: {{ overlay_color }};
+						--text-color: {{ color }};
+						--text-font-size: {{ font_size }}px;
 
-						{%- capture heading_variables -%}
-							{%- case heading_size -%}
-								{% when 'h1' %}
-									--title-font-size: 50px;
-								{% when 'h2' %}
-									--title-font-size: 42px;
-								{% when 'h3' %}
-									--title-font-size: 34px;
-							{%- endcase -%}
-
-							{%- case heading_size_mobile -%}
-								{% when 'h1' %}
-									--title-font-size-mobile: 32px;
-								{% when 'h2' %}
-									--title-font-size-mobile: 26px;
-								{% when 'h3' %}
-									--title-font-size-mobile: 22px;
-							{%- endcase -%}
-						{%- endcapture -%}
-
-						{%- capture text_variables -%}
-							--text-font-size: {{ font_size }}px;
-							--text-font-size-mobile: {{ font_size_mobile }}px;
-						{%- endcapture -%}
-
-						{%- capture button_variables -%}
-
-						{%- endcapture -%}
-
-						{%- case block.type -%}
-							{%- when "heading" -%}
-								<h1 class="hero__title-wrapper" style="{{- heading_variables | escape -}}">
-									{%- if heading != blank -%}
-										<div class="hero__title hero__title--desktop">{{- heading | replace: "p>", "span>" -}}</div>
-									{%- endif -%}
-									{%- if heading_mobile != blank -%}
-										<div class="hero__title hero__title--mobile">{{- heading_mobile | replace: "p>", "span>" -}}</div>
-									{%- endif -%}
-								</h1>
+						{%- case vertical_position -%}
+							{% when 'top' %}
+								--align-items: flex-start;
+							{% when 'middle' %}
+								--align-items: center;
+							{% when 'bottom' %}
+								--align-items: flex-end;
 						{%- endcase -%}
 
-						{%- case block.type -%}
-							{%- when "text" -%}
-								{%- if text != blank or text_mobile != blank -%}
-									<div class="hero__description-wrapper" style="{{- text_variables | escape -}}">
+						{%- case horizontal_position -%}
+							{% when 'left' %}
+								--justify-content: flex-start;
+							{% when 'center' %}
+								--justify-content: center;
+							{% when 'right' %}
+								--justify-content: flex-end;
+						{%- endcase -%}
+
+						{%- case text_alignment -%}
+							{% when 'left' %}
+								--text-align: left;
+							{% when 'center' %}
+								--text-align: center;
+							{% when 'right' %}
+								--text-align: right;
+						{%- endcase -%}
+
+						{%- case image_height -%}
+							{% when 'small' %}
+								--section-height: 420px;
+							{% when 'medium' %}
+								--section-height: 550px;
+							{% when 'large' %}
+								--section-height: 700px;
+							{% when 'full_height' %}
+								--section-height: 100vh;
+						{%- endcase -%}
+
+						{%- case heading_size -%}
+							{% when 'h1' %}
+								--title-font-size: 80px;
+							{% when 'h2' %}
+								--title-font-size: 64px;
+							{% when 'h3' %}
+								--title-font-size: 32px;
+						{%- endcase -%}
+					{%- endcapture -%}
+
+					<div
+						class="content-section__col overflow-hidden mb-8 lg:mb-0 lg:mx-3 lg:w-full relative{% if adapt_height %} h-auto{%- endif -%}"
+						style="{{- block_variables | escape -}}"
+					>
+						{%- if show_content -%}
+							{%- if heading != blank or text != blank or button_link != blank and button_label != blank -%}
+								<div class="content-section__text-wrapper flex absolute z-10 top-0 left-0 right-0 bottom-0">
+									<div class="content-section__text px-8 py-8 lg:py-16 lg:px-16">
+										{%- if heading != blank -%}
+											<h2 class="content-section__title {{ heading_size }}">{{- heading | replace: "p>", "span>" -}}</h2>
+										{%- endif -%}
 										{%- if text != blank -%}
-											<div class="hero__description hero__description--desktop">{{- text -}}</div>
+											<div class="pt-8 lg:pt-7">
+												{{- text -}}
+											</div>
 										{%- endif -%}
-										{%- if text_mobile != blank -%}
-											<div class="hero__description hero__description--mobile">{{- text_mobile -}}</div>
-										{%- endif -%}
-									</div>
-								{%- endif -%}
-						{%- endcase -%}
-
-						{%- case block.type -%}
-							{%- when "buttons" -%}
-								{%- if button_link != blank and button_label != blank or button_link_mobile != blank and button_label_mobile != blank -%}
-									<div class="hero__cta-wrapper">
-										{%- if button_label != blank and button_link != blank -%}
-											<a href="{{ button_link }}" class="hero__cta button hero__cta--desktop">
-												{{- button_label -}}
-												{%- if button_icon -%}
-													{%- render 'icon-arrow' -%}
-												{%- endif -%}
-											</a>
-										{%- endif -%}
-										{%- if button_label_mobile != blank and button_link_mobile != blank -%}
-											<a href="{{ button_link_mobile }}" class="hero__cta button hero__cta--mobile">
-												{{- button_label_mobile -}}
-												{%- if button_icon_mobile -%}
-													{%- render 'icon-arrow' -%}
-												{%- endif -%}
-											</a>
+										{%- if button_link != blank and button_label != blank -%}
+											<div class="mt-8 lg:mt-7">
+												<a href="{{ button_link }}" class="lg:text-2xl button">
+													{{- button_label -}}
+												</a>
+											</div>
 										{%- endif -%}
 									</div>
-								{%- endif -%}
-						{%- endcase -%}
-					{%- endfor -%}
-				</div>
-				{%- if image_link != blank or image_link_mobile != blank -%}
-					<div class="hero__banner-link-wrapper">
-						{%- if image_link != blank -%}
-							<a href="{{ image_link }}" class="hero__banner-link hero__banner-link--desktop">
-								banner link
-							</a>
+								</div>
+							{%- endif -%}
 						{%- endif -%}
-						{%- if image_link_mobile != blank -%}
-							<a href="{{ image_link_mobile }}" class="hero__banner-link hero__banner-link--mobile">
-								banner link
-							</a>
+
+						{%- if image != blank or image_mobile != blank -%}
+							<div class="content-section__image{% unless adapt_height %} absolute z-0 left-0 top-0 right-0 bottom-0{% endunless %}">
+								<picture>
+									<source srcset="{{ image_mobile | img_url: '767x' }} 1x, {{ image_mobile | img_url: '1534x' }} 2x" media="(max-width: 767px)">
+									<source srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x" media="(max-width: 1920px)">
+									<img
+										class="{% unless adapt_height %}max-w-none w-full h-full object-cover{% endunless %}"
+										srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x"
+										src="{{ image | img_url: '1920x' }}"
+										alt="{{ image.alt }}"
+									/>
+								</picture>
+							</div>
 						{%- endif -%}
 					</div>
-				{%- endif -%}
+				{%- endfor -%}
 			</div>
 		{%- unless full_width -%}</div>{%- endunless -%}
 	</div>
-
-	<div class="hero__image{% if mobile_adapt_height %} hero__image--adapt-mobile{% endif %}{% if adapt_height %} hero__image--adapt-desktop{% endif %}">
-		<picture>
-		    <source srcset="{{ image_mobile | img_url: '767x' }} 1x, {{ image_mobile | img_url: '1534x' }} 2x" media="(max-width: 767px)">
-		    <source srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x" media="(max-width: 1920px)">
-		    <img
-		        srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x"
-		        src="{{ image | img_url: '1920x' }}"
-		        alt="{{ image.alt }}"
-		    />
-		</picture>
-	</div>
-</div>
-
 {%- endif -%}
 
 
@@ -265,13 +153,13 @@
 				"settings": [
                     {
                         "type": "checkbox",
-                        "id": "show_content_box",
+                        "id": "show_content",
                         "default": true,
                         "label": "Show/hide content"
                     },
                     {
                         "type": "select",
-                        "id": "desktop_content_vertical_position",
+                        "id": "vertical_position",
                         "options": [
                             {
                                 "value": "top",
@@ -291,7 +179,7 @@
                     },
                     {
                         "type": "select",
-                        "id": "desktop_content_horizontal_position",
+                        "id": "horizontal_position",
                         "options": [
                             {
                                 "value": "left",
@@ -311,7 +199,7 @@
                     },
                     {
                         "type": "select",
-                        "id": "desktop_text_alignment",
+                        "id": "text_alignment",
                         "options": [
                             {
                                 "value": "left",
@@ -331,7 +219,7 @@
                     },
                     {
                         "type": "color",
-                        "id": "text_color",
+                        "id": "color",
                         "label": "Text color",
                         "default": "#ffffff"
                     },
@@ -377,7 +265,7 @@
 					},
 					{
 						"type": "range",
-						"id": "text_font_size",
+						"id": "font_size",
 						"min": 12,
 						"max": 30,
 						"step": 1,
@@ -387,7 +275,7 @@
 					},
                     {
 						"type": "header",
-						"content": "Image settings"
+						"content": "Button settings"
 					},
                     {
 						"type": "text",
@@ -400,43 +288,36 @@
 						"id": "button_link",
 						"label": "Url"
 					},
-					{
-						"type": "checkbox",
-						"id": "show_button_icon",
-						"default": true,
-						"label": "Show/hide icon"
-					},
                     {
 						"type": "header",
 						"content": "Image settings"
 					},
                     {
-                        "type": "checkbox",
-                        "id": "full_width",
-                        "default": false,
-                        "label": "Full width"
-                    },
-                    {
                         "type": "image_picker",
                         "id": "image",
-                        "label": "Image"
+                        "label": "Image desktop"
+                    },
+					{
+                        "type": "image_picker",
+                        "id": "image_mobile",
+                        "label": "Image mobile"
                     },
                     {
                         "type": "checkbox",
-                        "id": "adapt_height_first_image",
+                        "id": "adapt_height",
                         "default": false,
                         "label": "Adapt section height to first image size",
                         "info": "Overwrites image banner height setting when checked."
                     },
                     {
                         "type": "color_background",
-                        "id": "image_overlay_color",
+                        "id": "overlay_color",
                         "label": "Image overlay",
-                        "default": "linear-gradient(0deg, rgba(0, 0, 0, 0.5) 34.23%, rgba(0, 0, 0, 0) 100%)"
+                        "default": "linear-gradient(360deg, rgba(0, 0, 0, 0.2) 0%, rgba(0, 0, 0, 0) 42.37%)"
                     },
                     {
                         "type": "range",
-                        "id": "image_overlay_opacity",
+                        "id": "overlay_opacity",
                         "min": 0,
                         "max": 100,
                         "step": 10,
@@ -446,18 +327,13 @@
                     },
                     {
                         "type": "range",
-                        "id": "image_overlay_height",
+                        "id": "overlay_height",
                         "min": 0,
                         "max": 100,
                         "step": 5,
                         "unit": "%",
                         "label": "Image overlay height",
                         "default": 55
-                    },
-                    {
-                        "type": "url",
-                        "id": "image_link",
-                        "label": "Image link"
                     },
                     {
                         "type": "select",
@@ -488,6 +364,12 @@
 			}
 		],
 		"settings": [
+			{
+				"type": "checkbox",
+				"id": "full_width",
+				"default": false,
+				"label": "Full width"
+			},
 			{
 				"type": "header",
 				"content": "Desktop settings"

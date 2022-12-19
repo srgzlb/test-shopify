@@ -454,13 +454,13 @@ h1,
 
 h2,
 .h2 {
-  font-size: calc(var(--font-heading-scale) * 2rem);
+  font-size: calc(var(--font-heading-scale) * 3.2rem);
 }
 
 @media only screen and (min-width: 768px) {
   h2,
   .h2 {
-    font-size: calc(var(--font-heading-scale) * 2.4rem);
+    font-size: calc(var(--font-heading-scale) * 6.4rem);
   }
 }
 

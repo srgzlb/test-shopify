@@ -12,7 +12,7 @@ body {
 .container {
     padding: 0 20px;
     margin: 0 auto;
-    max-width: 1400px;
+    max-width: 1400px !important;
 }
 
 ul {
@@ -62,7 +62,7 @@ button {
     position: relative;
     min-width: auto;
     min-height: auto;
-    color: $black;
+    color: currentColor;
     font-family: $font-primary;
     font-style: normal;
     font-weight: 400;
@@ -85,7 +85,7 @@ button {
         top: calc(100% + 2px) !important;
         right: 0;
         height: 1px;
-        border-bottom: 1px solid $black;
+        border-bottom: 1px solid currentColor;
         box-shadow: none !important;
     }
 }
