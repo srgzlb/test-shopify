@@ -1,0 +1,233 @@
+{
+    "sections": {
+      "edf81e47-56fa-4e28-99ec-2857d79652b2": {
+        "type": "hero",
+        "blocks": {
+          "4284b64e-8b8f-41c2-a2df-7c0c4779e672": {
+            "type": "heading",
+            "settings": {
+              "heading": "<p>Image banner desktop<\/p>",
+              "heading_size": "h1",
+              "heading_mobile": "<p>Image banner mobile<\/p>",
+              "heading_size_mobile": "h2"
+            }
+          },
+          "8120363d-54ef-4469-b8c9-6c9972b95096": {
+            "type": "text",
+            "settings": {
+              "text": "<p>Give customers details about the banner image.<\/p>",
+              "text_font_size": 16,
+              "text_mobile": "<p>Give customers details about the banner image mobile.<\/p>",
+              "text_font_size_mobile": 14
+            }
+          },
+          "b85c75f7-a304-4225-89d1-2e50eff92456": {
+            "type": "buttons",
+            "settings": {
+              "button_label": "Label",
+              "button_link": "shopify:\/\/pages\/contact",
+              "show_button_icon": true,
+              "button_label_mobile": "Label",
+              "button_link_mobile": "shopify:\/\/products\/product-1",
+              "show_button_icon_mobile": true
+            }
+          }
+        },
+        "block_order": [
+          "4284b64e-8b8f-41c2-a2df-7c0c4779e672",
+          "8120363d-54ef-4469-b8c9-6c9972b95096",
+          "b85c75f7-a304-4225-89d1-2e50eff92456"
+        ],
+        "settings": {
+          "padding_top": 50,
+          "padding_bottom": 50,
+          "show_content_box": false,
+          "full_width": false,
+          "desktop_content_vertical_position": "bottom",
+          "desktop_content_horizontal_position": "right",
+          "desktop_text_alignment": "right",
+          "text_color": "#ffffff",
+          "image": "shopify:\/\/shop_images\/img.jpg",
+          "adapt_height_first_image": false,
+          "image_overlay_color": "linear-gradient(0deg, rgba(0, 0, 0, 0.5) 34.23%, rgba(0, 0, 0, 0) 100%)",
+          "image_overlay_opacity": 50,
+          "image_overlay_height": 55,
+          "image_link": "shopify:\/\/collections\/all",
+          "image_height": "large",
+          "padding_top_mobile": 25,
+          "padding_bottom_mobile": 25,
+          "show_content_box_mobile": false,
+          "mobile_content_vertical_position": "bottom",
+          "mobile_content_horizontal_position": "center",
+          "mobile_text_alignment": "center",
+          "text_color_mobile": "#ffffff",
+          "image_mobile": "shopify:\/\/shop_images\/img-mob.jpg",
+          "mobile_adapt_height_first_image": false,
+          "image_overlay_color_mobile": "linear-gradient(0deg, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 100%)",
+          "image_overlay_opacity_mobile": 70,
+          "image_overlay_height_mobile": 85,
+          "image_link_mobile": "shopify:\/\/collections\/all",
+          "mobile_image_height": "large"
+        }
+      },
+      "527c5e09-4173-49e0-b3d4-bb16764ab586": {
+        "type": "collections-carousel",
+        "blocks": {
+          "3d094730-ff02-4a95-9000-c87f5b979668": {
+            "type": "text",
+            "settings": {
+              "heading": "Make a scene.",
+              "description": "<p>Everything you need for a great party, from decor to drinks and games.  <\/p>",
+              "button_link": "shopify:\/\/collections\/frontpage",
+              "button_label": "find your scene",
+              "background": "#00966e",
+              "collection": "frontpage"
+            }
+          },
+          "d435561f-b78e-4446-82f6-6e8a165aecb7": {
+            "type": "text",
+            "settings": {
+              "heading": "",
+              "description": "<p>Everything you need<\/p>",
+              "button_link": "",
+              "button_label": "",
+              "background": "#85abbd",
+              "collection": "cheap"
+            }
+          },
+          "d60393c6-18b2-4729-b8cb-79f746866b71": {
+            "type": "text",
+            "settings": {
+              "heading": "",
+              "description": "<p>Everything you need<\/p>",
+              "button_link": "",
+              "button_label": "",
+              "background": "#e3ff21",
+              "collection": "expensive"
+            }
+          },
+          "396b83fb-5cb9-4668-9fbe-58a76289d5f1": {
+            "type": "text",
+            "settings": {
+              "heading": "",
+              "description": "<p>Everything you need<\/p>",
+              "button_link": "",
+              "button_label": "",
+              "background": "#bf91c4",
+              "collection": "make-it-extra"
+            }
+          },
+          "62912438-3dd5-4c68-85c2-6bdbe58b6fb0": {
+            "type": "text",
+            "settings": {
+              "heading": "",
+              "description": "<p>Everything you need<\/p>",
+              "button_link": "shopify:\/\/pages\/contact",
+              "button_label": "",
+              "background": "#85abbd",
+              "collection": "test-1"
+            }
+          }
+        },
+        "block_order": [
+          "3d094730-ff02-4a95-9000-c87f5b979668",
+          "d435561f-b78e-4446-82f6-6e8a165aecb7",
+          "d60393c6-18b2-4729-b8cb-79f746866b71",
+          "396b83fb-5cb9-4668-9fbe-58a76289d5f1",
+          "62912438-3dd5-4c68-85c2-6bdbe58b6fb0"
+        ],
+        "settings": {
+          "title": "<p>HAVING FUN 101<\/p>",
+          "title_size": "h1",
+          "text_color": "#000000",
+          "collections_limit": 4,
+          "padding_top": 40,
+          "padding_bottom": 40,
+          "padding_top_mobile": 20,
+          "padding_bottom_mobile": 20
+        }
+      },
+      "64635b78-af26-4675-8d5e-b2abafbf8c87": {
+        "type": "content-section",
+        "blocks": {
+          "3c28544e-f4b2-4c89-addd-1418394bd6d4": {
+            "type": "block",
+            "settings": {
+              "show_content": true,
+              "vertical_position": "bottom",
+              "horizontal_position": "center",
+              "text_alignment": "center",
+              "color": "#ffffff",
+              "heading": "<p>Housewarming Gifts for the host<\/p>",
+              "heading_size": "h2",
+              "text": "<p>Give customers details about the banner image.<\/p>",
+              "font_size": 16,
+              "button_label": "Discover them all",
+              "button_link": "shopify:\/\/products\/product-2",
+              "image": "shopify:\/\/shop_images\/img.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/img-mob.jpg",
+              "adapt_height": false,
+              "overlay_color": "linear-gradient(0deg, rgba(0, 0, 0, 0.5) 34.23%, rgba(0, 0, 0, 0) 100%)",
+              "overlay_opacity": 60,
+              "overlay_height": 100,
+              "image_height": "small"
+            }
+          },
+          "f7fb1f9e-d624-4b38-86b9-8e14c37ce298": {
+            "type": "block",
+            "settings": {
+              "show_content": true,
+              "vertical_position": "bottom",
+              "horizontal_position": "left",
+              "text_alignment": "left",
+              "color": "#ffffff",
+              "heading": "<p>Image banner desktop<\/p>",
+              "heading_size": "h3",
+              "text": "<p>Give customers details about the banner image.<\/p>",
+              "font_size": 14,
+              "button_label": "Label",
+              "button_link": "shopify:\/\/collections\/frontpage",
+              "image": "shopify:\/\/shop_images\/img.jpg",
+              "image_mobile": "shopify:\/\/shop_images\/img-mob.jpg",
+              "adapt_height": false,
+              "overlay_color": "linear-gradient(360deg, rgba(18, 18, 18, 1), rgba(0, 0, 0, 0) 100%)",
+              "overlay_opacity": 100,
+              "overlay_height": 100,
+              "image_height": "small"
+            }
+          }
+        },
+        "block_order": [
+          "3c28544e-f4b2-4c89-addd-1418394bd6d4",
+          "f7fb1f9e-d624-4b38-86b9-8e14c37ce298"
+        ],
+        "settings": {
+          "full_width": false,
+          "padding_top": 50,
+          "padding_bottom": 50,
+          "padding_top_mobile": 25,
+          "padding_bottom_mobile": 25
+        }
+      },
+      "6b51d93e-3d98-4fd4-8a88-c0fb55b23390": {
+        "type": "product-carousel",
+        "settings": {
+          "collection": "frontpage",
+          "title": "<p>PARTY A LA CARTE<\/p>",
+          "title_size": "h1",
+          "text_color": "#000000",
+          "products_limit": 4,
+          "padding_top": 40,
+          "padding_bottom": 40,
+          "padding_top_mobile": 20,
+          "padding_bottom_mobile": 20
+        }
+      }
+    },
+    "order": [
+      "edf81e47-56fa-4e28-99ec-2857d79652b2",
+      "527c5e09-4173-49e0-b3d4-bb16764ab586",
+      "64635b78-af26-4675-8d5e-b2abafbf8c87",
+      "6b51d93e-3d98-4fd4-8a88-c0fb55b23390"
+    ]
+  }
