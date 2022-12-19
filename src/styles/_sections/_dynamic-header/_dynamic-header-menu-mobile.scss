@@ -81,7 +81,7 @@
     padding-bottom: 30px;
     transform: translateX(-100%);
     transition: all 0.3s ease-out;
-    background: $beige;
+    background: $green;
     z-index: 100;
     font-weight: 400;
     font-family: $font-primary;
@@ -92,6 +92,10 @@
 
     .mobile-dropdown-opened & {
         transform: translateX(0);
+    }
+
+    .page-scrolled & {
+        background: $beige;
     }
 }
 

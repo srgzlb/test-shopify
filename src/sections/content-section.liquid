@@ -16,7 +16,7 @@
 		 style="{{- variables | escape -}}"
 	>
 		{%- unless full_width -%}<div class="container">{%- endunless -%}
-			<div class="-mx-4 lg:flex">
+			<div class="-mx-4 lg:flex lg:flex-wrap">
 				{%- for block in section.blocks -%}
 					{%- assign overlay_opacity 		= block.settings.overlay_opacity -%}
 					{%- assign overlay_height 		= block.settings.overlay_height -%}
@@ -93,54 +93,55 @@
 					{%- endcapture -%}
 
 					<div
-						class="content-section__col overflow-hidden mb-8 lg:mb-0 lg:mx-3 lg:w-full relative{% if adapt_height %} h-auto{%- endif -%}"
+						class="content-section__col overflow-hidden mb-8 lg:px-3 lg:w-1/2{% if adapt_height %} h-auto{%- endif -%}"
 						style="{{- block_variables | escape -}}"
 					>
-						{%- if show_content -%}
-							{%- if heading != blank or text != blank or button_link != blank and button_label != blank -%}
-								<div class="content-section__text-wrapper flex absolute z-10 top-0 left-0 right-0 bottom-0">
-									<div class="content-section__text px-8 py-8 lg:py-16 lg:px-16">
-										{%- if heading != blank -%}
-											<h2 class="content-section__title {{ heading_size }}">{{- heading | replace: "p>", "span>" -}}</h2>
-										{%- endif -%}
-										{%- if text != blank -%}
-											<div class="pt-8 lg:pt-7">
-												{{- text -}}
-											</div>
-										{%- endif -%}
-										{%- if button_link != blank and button_label != blank -%}
-											<div class="mt-8 lg:mt-7">
-												<a href="{{ button_link }}" class="lg:text-2xl button">
-													{{- button_label -}}
-												</a>
-											</div>
-										{%- endif -%}
+						<div class="relative w-full{% unless adapt_height %} h-full{%- endunless -%}">
+							{%- if show_content -%}
+								{%- if heading != blank or text != blank or button_link != blank and button_label != blank -%}
+									<div class="content-section__text-wrapper flex absolute z-10 top-0 left-0 right-0 bottom-0">
+										<div class="content-section__text px-8 py-8 lg:py-16 lg:px-16">
+											{%- if heading != blank -%}
+												<h2 class="content-section__title {{ heading_size }}">{{- heading | replace: "p>", "span>" -}}</h2>
+											{%- endif -%}
+											{%- if text != blank -%}
+												<div class="pt-8 lg:pt-7">
+													{{- text -}}
+												</div>
+											{%- endif -%}
+											{%- if button_link != blank and button_label != blank -%}
+												<div class="mt-8 lg:mt-7">
+													<a href="{{ button_link }}" class="lg:text-2xl button">
+														{{- button_label -}}
+													</a>
+												</div>
+											{%- endif -%}
+										</div>
 									</div>
+								{%- endif -%}
+							{%- endif -%}
+
+							{%- if image != blank or image_mobile != blank -%}
+								<div class="content-section__image{% unless adapt_height %} absolute z-0 left-0 top-0 right-0 bottom-0{% endunless %}">
+									<picture>
+										<source srcset="{{ image_mobile | img_url: '767x' }} 1x, {{ image_mobile | img_url: '1534x' }} 2x" media="(max-width: 767px)">
+										<source srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x" media="(max-width: 1920px)">
+										<img
+											class="{% unless adapt_height %}max-w-none w-full h-full object-cover{% endunless %}"
+											srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x"
+											src="{{ image | img_url: '1920x' }}"
+											alt="{{ image.alt }}"
+										/>
+									</picture>
 								</div>
 							{%- endif -%}
-						{%- endif -%}
-
-						{%- if image != blank or image_mobile != blank -%}
-							<div class="content-section__image{% unless adapt_height %} absolute z-0 left-0 top-0 right-0 bottom-0{% endunless %}">
-								<picture>
-									<source srcset="{{ image_mobile | img_url: '767x' }} 1x, {{ image_mobile | img_url: '1534x' }} 2x" media="(max-width: 767px)">
-									<source srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x" media="(max-width: 1920px)">
-									<img
-										class="{% unless adapt_height %}max-w-none w-full h-full object-cover{% endunless %}"
-										srcset="{{ image | img_url: '1920x' }} 1x, {{ image | img_url: '3840x' }} 2x"
-										src="{{ image | img_url: '1920x' }}"
-										alt="{{ image.alt }}"
-									/>
-								</picture>
-							</div>
-						{%- endif -%}
+						</div>
 					</div>
 				{%- endfor -%}
 			</div>
 		{%- unless full_width -%}</div>{%- endunless -%}
 	</div>
 {%- endif -%}
-
 
 {% schema %}
 	{
